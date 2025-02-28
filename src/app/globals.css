@@ -6,8 +6,11 @@
 }
 
 :root {
-  --background: #efebe8;
-  --foreground: #171717;
+  --background: #090c08;
+  --foreground: #e0e0e2;
+  --primary: #e0e0e2;
+  --secondary: #a23e48;
+  --tertiary: #090c08;
 }
 
 body {
