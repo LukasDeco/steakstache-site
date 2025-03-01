@@ -1,23 +1,11 @@
 "use client";
 
-import { BaseWalletMultiButton, Button } from "./WalletButton";
-import { useWallet, useConnection } from "@solana/wallet-adapter-react";
-import {
-  Keypair,
-  Transaction,
-  PublicKey,
-  StakeProgram,
-  VersionedTransaction,
-  TransactionMessage,
-  LAMPORTS_PER_SOL,
-} from "@solana/web3.js";
-import { useState } from "react";
+import { BaseWalletMultiButton } from "./WalletButton";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { StakeButton } from "./StakeButton";
 
 export const Hero = () => {
-  const { publicKey, wallet } = useWallet();
-  const { connection } = useConnection();
-  const [openedForm, setOpenedForm] = useState(false);
+  const { publicKey } = useWallet();
 
   return (
     <main className="flex flex-1 text-neutral-800 row-start-2 justify-end items-end sm:items-end w-full gap-10">
