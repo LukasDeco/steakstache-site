@@ -1,5 +1,4 @@
 import { AppWrapper } from "@/components/AppWrapper";
-import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
 
 export default function Security() {
