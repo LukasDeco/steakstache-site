@@ -3,10 +3,8 @@
 import React, { FC, useMemo } from "react";
 import {
   ConnectionProvider,
-  useWallet,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
-import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
@@ -16,11 +14,6 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 export const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL;
 
 export const AppWrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
-  // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-  const { wallet } = useWallet();
-
-  // You can also provide a custom RPC endpoint.
-
   const wallets = useMemo(
     () => [
       /**
@@ -35,7 +28,6 @@ export const AppWrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
        * instantiate its legacy wallet adapter here. Common legacy adapters can be found
        * in the npm package `@solana/wallet-adapter-wallets`.
        */
-      new UnsafeBurnerWalletAdapter(),
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [MAINNET_RPC_URL]
