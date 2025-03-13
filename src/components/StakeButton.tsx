@@ -72,15 +72,16 @@ export const StakeButton = () => {
       {openedForm ? (
         <div
           className={twMerge(
-            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out",
+            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center",
             openedForm ? "" : "hover:bg-[#18AB7C]"
           )}
         >
           {openedForm ? (
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <div>Enter Stake:</div>
               <input
                 type="number"
+                className="bg-transparent border-none outline-none"
                 value={stakeAmount}
                 onChange={(e) => setStakeAmount(Number(e.target.value))}
               />
