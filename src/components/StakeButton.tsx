@@ -68,10 +68,8 @@ export const StakeButton = () => {
       );
 
       console.log("signedTx", signedTx);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Staking failed:", error);
-      const logs = await error.getLogs();
-      console.log("logs", logs);
     }
   };
 

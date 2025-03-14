@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 type StatCardProps = {
   value: string;
   label: string;
