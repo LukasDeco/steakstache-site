@@ -7,7 +7,6 @@ import {
   LAMPORTS_PER_SOL,
   Lockup,
   Authorized,
-  SystemProgram,
 } from "@solana/web3.js";
 import { Button } from "./WalletButton";
 import { useConnection } from "@solana/wallet-adapter-react";
@@ -48,12 +47,6 @@ export const StakeButton = () => {
         ),
       }).instructions;
 
-      // const transferIx = SystemProgram.transfer({
-      //   fromPubkey: publicKey,
-      //   toPubkey: publicKey,
-      //   lamports: 1000,
-      // });
-
       const messageV0 = new TransactionMessage({
         payerKey: publicKey,
         recentBlockhash: (await connection.getLatestBlockhash()).blockhash,
@@ -75,20 +68,6 @@ export const StakeButton = () => {
       );
 
       console.log("signedTx", signedTx);
-      //
-      // const signedTx = await signTransaction(transaction);
-      // signedTx.addSignature(stakeAccount.publicKey, stakeAccount.secretKey);
-
-      // console.log("signature", signature);
-
-      // const sentTx = await connection.sendTransaction(signedTx, {
-      //   skipPreflight: false,
-      // });
-
-      // console.log("sentTx", sentTx);
-
-      //   await connection.confirmTransaction(signature);
-      //   console.log("Staking transaction confirmed:", signature);
     } catch (error: any) {
       console.error("Staking failed:", error);
       const logs = await error.getLogs();
