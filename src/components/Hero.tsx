@@ -8,9 +8,9 @@ export const Hero = () => {
   const { publicKey } = useWallet();
 
   return (
-    <main className="flex flex-1 text-neutral-800 row-start-2 justify-end items-end sm:items-end w-full gap-10">
-      <h2 className="text-6xl font-bold  flex-1">
-        &nbsp; &nbsp; &nbsp; &nbsp;
+    <main className="flex flex-1 text-neutral-800 row-start-2 justify-end items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
+      <h2 className="sm:text-6xl text-4xl font-bold flex-1">
+        <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
         <span className="text-neutral-100 mr-1">{"}"}</span>SteakStache is a
         high-quality Solana validator
       </h2>

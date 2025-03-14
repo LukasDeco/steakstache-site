@@ -5,6 +5,9 @@ import {
   VersionedTransaction,
   TransactionMessage,
   LAMPORTS_PER_SOL,
+  Lockup,
+  Authorized,
+  SystemProgram,
 } from "@solana/web3.js";
 import { Button } from "./WalletButton";
 import { useConnection } from "@solana/wallet-adapter-react";
@@ -12,28 +15,28 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 export const StakeButton = () => {
-  const { publicKey, wallet } = useWallet();
+  const { publicKey, wallet, signTransaction } = useWallet();
   const { connection } = useConnection();
   const [openedForm, setOpenedForm] = useState(false);
   const [stakeAmount, setStakeAmount] = useState(0);
   const handleStake = async () => {
     console.log("stakeAmount", stakeAmount);
     try {
-      if (!publicKey || !wallet) throw new Error("Wallet not connected");
+      if (!publicKey || !wallet || !signTransaction)
+        throw new Error("Wallet not connected");
 
       // Create a stake account transaction
       const stakeAccount = await Keypair.generate();
       const minimumStakeBalance =
         await connection.getMinimumBalanceForRentExemption(StakeProgram.space);
 
+      // TODO try a simple sol transfer ix
       const createStakeAccountIxs = StakeProgram.createAccount({
+        authorized: new Authorized(publicKey, publicKey), // Here we set two authorities: Stake Authority and Withdrawal Authority. Both are set to our wallet.
         fromPubkey: publicKey,
-        stakePubkey: stakeAccount.publicKey,
-        authorized: {
-          staker: publicKey,
-          withdrawer: publicKey,
-        },
         lamports: minimumStakeBalance + stakeAmount * LAMPORTS_PER_SOL,
+        lockup: new Lockup(0, 0, publicKey), // Optional. We'll set this to 0 for demonstration purposes.
+        stakePubkey: stakeAccount.publicKey,
       }).instructions;
 
       // Add validator delegation
@@ -45,6 +48,12 @@ export const StakeButton = () => {
         ),
       }).instructions;
 
+      // const transferIx = SystemProgram.transfer({
+      //   fromPubkey: publicKey,
+      //   toPubkey: publicKey,
+      //   lamports: 1000,
+      // });
+
       const messageV0 = new TransactionMessage({
         payerKey: publicKey,
         recentBlockhash: (await connection.getLatestBlockhash()).blockhash,
@@ -53,17 +62,37 @@ export const StakeButton = () => {
 
       const transaction = new VersionedTransaction(messageV0);
 
+      const simulate = await connection.simulateTransaction(transaction);
+
+      console.log("simulate", simulate);
+
       const signedTx = await wallet.adapter.sendTransaction(
         transaction,
-        connection
+        connection,
+        {
+          signers: [stakeAccount],
+        }
       );
 
       console.log("signedTx", signedTx);
+      //
+      // const signedTx = await signTransaction(transaction);
+      // signedTx.addSignature(stakeAccount.publicKey, stakeAccount.secretKey);
+
+      // console.log("signature", signature);
+
+      // const sentTx = await connection.sendTransaction(signedTx, {
+      //   skipPreflight: false,
+      // });
+
+      // console.log("sentTx", sentTx);
 
       //   await connection.confirmTransaction(signature);
       //   console.log("Staking transaction confirmed:", signature);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Staking failed:", error);
+      const logs = await error.getLogs();
+      console.log("logs", logs);
     }
   };
 
