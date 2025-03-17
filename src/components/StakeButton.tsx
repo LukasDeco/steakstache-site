@@ -78,7 +78,7 @@ export const StakeButton = () => {
       {openedForm ? (
         <div
           className={twMerge(
-            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center",
+            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center w-full sm:w-auto",
             openedForm ? "" : "hover:bg-[#18AB7C]"
           )}
         >
@@ -107,7 +107,7 @@ export const StakeButton = () => {
           onClick={() => setOpenedForm(true)}
           disabled={openedForm}
           className={twMerge(
-            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out",
+            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
             openedForm ? "" : "hover:bg-[#18AB7C]"
           )}
         >
