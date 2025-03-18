@@ -7,11 +7,14 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 export const MAINNET_RPC_URL = process.env.NEXT_PUBLIC_MAINNET_RPC_URL;
+
+const queryClient = new QueryClient();
 
 export const AppWrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
   const wallets = useMemo(
@@ -37,9 +40,11 @@ export const AppWrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
     <ConnectionProvider
       endpoint={MAINNET_RPC_URL ?? WalletAdapterNetwork.Mainnet}
     >
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
+      <QueryClientProvider client={queryClient}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletModalProvider>{children}</WalletModalProvider>
+        </WalletProvider>
+      </QueryClientProvider>
     </ConnectionProvider>
   );
 };

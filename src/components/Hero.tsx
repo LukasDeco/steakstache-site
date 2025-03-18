@@ -23,7 +23,10 @@ export const Hero = () => {
         {publicKey ? (
           <StakeButton />
         ) : (
-          <WalletMultiButton className="bg-[#090C08] hover:bg-[#18AB7C] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out" />
+          <WalletMultiButton
+            wrapperClassName="w-full sm:w-auto"
+            className="w-full sm:w-auto bg-[#090C08] hover:bg-[#18AB7C] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+          />
         )}
       </div>
     </main>
@@ -49,6 +52,7 @@ type ButtonProps = {
   style?: React.CSSProperties;
   tabIndex?: number;
   children?: React.ReactNode;
+  wrapperClassName?: string;
 };
 
 export function WalletMultiButton(props: ButtonProps) {

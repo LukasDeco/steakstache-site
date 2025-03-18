@@ -4,7 +4,7 @@ import Image from "next/image";
 import { WalletMultiButton } from "./Hero";
 export const Nav = () => {
   return (
-    <header className="flex items-center justify-between w-full">
+    <header className="flex items-center justify-between w-full p-4">
       <div className="flex items-center gap-2">
         <Image
           aria-hidden

@@ -30,6 +30,7 @@ type Props = ButtonProps & {
     "change-wallet": string;
     disconnect: string;
   };
+  wrapperClassName?: string;
 };
 
 export function BaseWalletMultiButton({ children, labels, ...props }: Props) {
@@ -79,9 +80,8 @@ export function BaseWalletMultiButton({ children, labels, ...props }: Props) {
       return labels["no-wallet"];
     }
   }, [buttonState, children, labels, publicKey]);
-  console.log("props.className", props.className);
   return (
-    <div className="wallet-adapter-dropdown">
+    <div className={twMerge("wallet-adapter-dropdown", props.wrapperClassName)}>
       <BaseWalletConnectionButton
         {...props}
         aria-expanded={menuOpen}
