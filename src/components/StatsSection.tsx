@@ -31,7 +31,7 @@ export default function StatsSection() {
           <StatCard
             value={data?.commission + "%"}
             className="-mb-[24px]"
-            label="Commission"
+            label="Inflation Commission"
           />
           <StatCard
             value={data?.total_apy + "%"}

@@ -13,6 +13,7 @@ import { useConnection } from "@solana/wallet-adapter-react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
 export const StakeButton = () => {
   const { publicKey, wallet, signTransaction } = useWallet();
   const { connection } = useConnection();
@@ -42,9 +43,7 @@ export const StakeButton = () => {
       const delegateIxs = StakeProgram.delegate({
         stakePubkey: stakeAccount.publicKey,
         authorizedPubkey: publicKey,
-        votePubkey: new PublicKey(
-          "sT34kbaqmHWbPwjhyeG1GnjoX82KpXawFsnzUkzJpYX"
-        ),
+        votePubkey: VALIDATOR_VOTE_ACCOUNT,
       }).instructions;
 
       const messageV0 = new TransactionMessage({
