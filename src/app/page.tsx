@@ -1,6 +1,4 @@
-import { AppWrapper } from "@/components/AppWrapper";
 import { Hero } from "@/components/Hero";
-import { Nav } from "@/components/Nav";
 import StatsSection from "@/components/StatsSection";
 export default function Home() {
   return (

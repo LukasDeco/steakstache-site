@@ -44,11 +44,3 @@ export default function StatsSection() {
     </div>
   );
 }
-
-function ConcaveSVG() {
-  return (
-    <svg className="w-16 h-16" viewBox="0 0 100 100">
-      <path d="M100,100 H0 V0 Q100,0 100,100 Z" fill="black" />
-    </svg>
-  );
-}
