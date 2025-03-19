@@ -1,6 +1,6 @@
 // pages/api/validator-stake-blink.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
+// import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
 
 type BlinkActionResponse = {
   type: string;
@@ -60,7 +60,7 @@ export default async function handler(
 
   try {
     // Your validator public key
-    const validatorVoteKey = VALIDATOR_VOTE_ACCOUNT;
+    // const validatorVoteKey = VALIDATOR_VOTE_ACCOUNT;
 
     // Get staking amount from query params (in SOL)
     const amountParam = req.query.amount;

@@ -1,6 +1,5 @@
 import {
   Keypair,
-  PublicKey,
   StakeProgram,
   VersionedTransaction,
   TransactionMessage,

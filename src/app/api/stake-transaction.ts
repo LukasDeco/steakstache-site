@@ -98,18 +98,10 @@ export default async function handler(
       "base64"
     );
 
-    // For demonstration, also include the stake account secret key
-    // In production, you would handle this differently based on your security requirements
-    const stakeAccountSecretKey = Buffer.from(stakeAccount.secretKey).toString(
-      "base64"
-    );
-
     return res.status(200).json({
       transaction: serializedTransaction,
       message: `Transaction created for staking ${stakeAmount} SOL to validator ${validator.toString()}. The stake account public key is ${stakeAccount.publicKey.toString()}.`,
-      // Include the stake account secret key in a secure way or manage it differently
-      stakeAccountSecretKey: stakeAccountSecretKey,
-    } as any); // Using 'as any' to accommodate the extra field
+    });
   } catch (error) {
     console.error("Error creating stake transaction:", error);
     return res.status(500).json({
