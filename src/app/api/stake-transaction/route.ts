@@ -11,6 +11,10 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import {
+  CreateActionPostResponseArgs,
+  createPostResponse,
+} from "@solana/actions";
 
 // Your validator vote account
 const VALIDATOR_VOTE_ACCOUNT = new PublicKey("YOUR_VALIDATOR_VOTE_ACCOUNT");
@@ -23,7 +27,7 @@ type TransactionResponse = {
   };
 };
 
-export default async function handler(
+export async function POST(
   req: NextApiRequest,
   res: NextApiResponse<TransactionResponse>
 ) {
@@ -94,14 +98,18 @@ export default async function handler(
 
     // Since we can't sign the transaction server-side (private key is with the user),
     // we serialize it and send it to the client for signing
-    const serializedTransaction = Buffer.from(transaction.serialize()).toString(
-      "base64"
-    );
 
-    return res.status(200).json({
-      transaction: serializedTransaction,
-      message: `Transaction created for staking ${stakeAmount} SOL to validator ${validator.toString()}. The stake account public key is ${stakeAccount.publicKey.toString()}.`,
-    });
+    const message = `Transaction created for staking ${stakeAmount} SOL to validator ${validator.toString()}. The stake account public key is ${stakeAccount.publicKey.toString()}.`;
+
+    const payload: CreateActionPostResponseArgs = {
+      fields: {
+        type: "transaction",
+        transaction,
+        message,
+      },
+    };
+
+    return createPostResponse(payload);
   } catch (error) {
     console.error("Error creating stake transaction:", error);
     return res.status(500).json({

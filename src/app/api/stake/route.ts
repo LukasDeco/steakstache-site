@@ -1,6 +1,14 @@
 // pages/api/validator-stake-blink.ts
 import { NextApiRequest, NextApiResponse } from "next";
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
+import {
+  ACTIONS_CORS_HEADERS,
+  ActionGetResponse,
+  ActionPostRequest,
+  ActionPostResponse,
+  CreateActionPostResponseArgs,
+  createPostResponse,
+} from "@solana/actions";
 
 type BlinkActionResponse = {
   type: string;
@@ -49,13 +57,14 @@ type BlinkActionResponse = {
   message?: string;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function GET(req: NextApiRequest) {
   // Only allow GET requests
   if (req.method !== "GET") {
-    return res.status(405).json({ message: "Method not allowed" });
+    return new Response("Method not allowed", { status: 405 });
+  }
+
+  if (!req.url) {
+    return new Response("No URL provided", { status: 400 });
   }
 
   try {
@@ -63,7 +72,8 @@ export default async function handler(
     // const validatorVoteKey = VALIDATOR_VOTE_ACCOUNT;
 
     // Get staking amount from query params (in SOL)
-    const amountParam = req.query.amount;
+    const url = new URL(req.url);
+    const amountParam = url.searchParams.get("amount");
     const stakeAmount =
       typeof amountParam === "string" ? parseFloat(amountParam) : 1;
 
@@ -75,13 +85,13 @@ export default async function handler(
     const transactionUrl = `${baseUrl}/api/stake-transaction?amount=${stakeAmount}`;
 
     // Create the blink data according to the specified format
-    const blinkData: BlinkActionResponse = {
+    const blinkData: ActionGetResponse = {
       type: "action",
       icon: `${baseUrl}/assets/images/logo.png`,
       title: "Stake to My Validator",
       description: "Support my Solana validator and earn rewards",
-      extendedDescription:
-        "By staking your SOL with my validator, you'll earn rewards while helping secure the Solana network.",
+      // extendedDescription:
+      //   "By staking your SOL with my validator, you'll earn rewards while helping secure the Solana network.",
       label: "Stake Now",
       disabled: false,
       links: {
@@ -94,54 +104,59 @@ export default async function handler(
           },
         ],
       },
-      context: {
-        url: `${baseUrl}/validator`,
-        websiteUrl: baseUrl,
-        category: "Staking",
-        provider: {
-          name: "Your Validator Name",
-          icon: `${baseUrl}/validator-icon.png`,
-        },
-      },
-      preview: {
-        image: `${baseUrl}/validator-preview.jpg`,
-        title: "Stake with My Validator",
-        description: `Stake ${stakeAmount} SOL and earn rewards`,
-        cta: "Stake Now",
-        context: {
-          url: `${baseUrl}/validator`,
-          websiteUrl: baseUrl,
-          category: "Staking",
-          provider: {
-            name: "Your Validator Name",
-            icon: `${baseUrl}/validator-icon.png`,
-          },
-        },
-      },
+      // context: {
+      //   url: `${baseUrl}/validator`,
+      //   websiteUrl: baseUrl,
+      //   category: "Staking",
+      //   provider: {
+      //     name: "Your Validator Name",
+      //     icon: `${baseUrl}/validator-icon.png`,
+      //   },
+      // },
+      // preview: {
+      //   image: `${baseUrl}/validator-preview.jpg`,
+      //   title: "Stake with My Validator",
+      //   description: `Stake ${stakeAmount} SOL and earn rewards`,
+      //   cta: "Stake Now",
+      //   context: {
+      //   url: `${baseUrl}/validator`,
+      //   websiteUrl: baseUrl,
+      //   category: "Staking",
+      //   provider: {
+      //     name: "Your Validator Name",
+      //     icon: `${baseUrl}/validator-icon.png`,
+      //   },
+      //   },
+      // },
     };
 
     // Return the blink data
-    return res.status(200).json(blinkData);
+    return new Response(JSON.stringify(blinkData), { status: 200 });
   } catch (error) {
     console.error("Error generating staking blink:", error);
 
     // Return error in the format expected by the blink system
-    return res.status(500).json({
-      type: "action",
-      icon: "https://yourdomain.com/validator-icon.png",
-      title: "Stake to My Validator",
-      description: "Support my Solana validator and earn rewards",
-      label: "Stake Now",
-      disabled: true,
-      links: {
-        actions: [],
-      },
-      error: {
-        message:
-          error instanceof Error
-            ? error.message
-            : "Failed to generate staking blink",
-      },
-    });
+    return new Response(
+      JSON.stringify({
+        type: "action",
+        icon: "https://yourdomain.com/validator-icon.png",
+        title: "Stake to My Validator",
+        description: "Support my Solana validator and earn rewards",
+        label: "Stake Now",
+        disabled: true,
+        links: {
+          actions: [],
+        },
+        error: {
+          message:
+            error instanceof Error
+              ? error.message
+              : "Failed to generate staking blink",
+        },
+      }),
+      { status: 500 }
+    );
   }
 }
+
+export const OPTIONS = GET; // OPTIONS request handler
