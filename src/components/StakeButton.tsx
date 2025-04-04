@@ -76,8 +76,8 @@ export const StakeButton = () => {
       {openedForm ? (
         <div
           className={twMerge(
-            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center w-full sm:w-auto",
-            openedForm ? "" : "hover:bg-[#18AB7C]"
+            "bg-[var(--color-background)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center w-full sm:w-auto",
+            openedForm ? "" : "hover:bg-[var(--color-secondary-accent)]"
           )}
         >
           {openedForm ? (
@@ -90,7 +90,7 @@ export const StakeButton = () => {
                 onChange={(e) => setStakeAmount(Number(e.target.value))}
               />
               <button
-                className="bg-[#18AB7C] cursor-pointer hover:bg-[#8ad2bb] text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+                className="bg-[var(--color-secondary-accent)] cursor-pointer hover:bg-[#8ad2bb] text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
                 onClick={handleStake}
               >
                 Stake
@@ -105,8 +105,8 @@ export const StakeButton = () => {
           onClick={() => setOpenedForm(true)}
           disabled={openedForm}
           className={twMerge(
-            "bg-[#090C08] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
-            openedForm ? "" : "hover:bg-[#18AB7C]"
+            "bg-[var(--color-background)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
+            openedForm ? "" : "hover:bg-[var(--color-secondary-accent)]"
           )}
         >
           Stake for Higher APY

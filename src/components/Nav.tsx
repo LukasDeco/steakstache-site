@@ -15,7 +15,7 @@ export const Nav = () => {
         />
         <h1 className="text-2xl font-bold text-neutral-100">SteakStache</h1>
       </div>
-      <WalletMultiButton className="bg-[#090C08] hover:bg-[#18AB7C] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out" />
+      <WalletMultiButton className="bg-[var(--color-background)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out" />
     </header>
   );
 };

@@ -25,7 +25,7 @@ export const Hero = () => {
         ) : (
           <WalletMultiButton
             wrapperClassName="w-full sm:w-auto"
-            className="w-full sm:w-auto bg-[#090C08] hover:bg-[#18AB7C] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+            className="w-full sm:w-auto bg-[var(--color-background)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
           />
         )}
       </div>

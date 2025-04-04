@@ -13,7 +13,9 @@ function StatCard({ value, label, className }: StatCardProps) {
     <div
       className={`relative flex flex-col items-center justify-center bg-black sm:rounded-3xl p-6 min-w-64 w-full sm:w-auto shadow-lg ${className}`}
     >
-      <span className="text-6xl font-bold text-[#18AB7C]">{value}</span>
+      <span className="text-6xl font-bold text-[var(--color-secondary-accent)]">
+        {value}
+      </span>
       <span className="text-sm text-gray-400 mt-2">{label}</span>
     </div>
   );

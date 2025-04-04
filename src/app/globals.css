@@ -15,12 +15,21 @@
 }
 
 :root {
-  --background: #090c08;
+  --background: #0a0a0a;
   --foreground: #e0e0e2;
   --primary: #e0e0e2;
   --secondary: #a23e48;
-  --tertiary: #090c08;
+  --tertiary: var(--color-background);
   --fade-in-animation: fadeIn 1s ease-in-out forwards;
+
+  --color-background: #0a0a0a; /* Jet Black */
+  --color-primary-neon: #ff004f; /* Crimson Neon */
+  --color-secondary-accent: #ff6a90; /* Soft Crimson Glow */
+  --color-text-primary: #eaeaea; /* Light Gray */
+  --color-text-secondary: #888888; /* Muted Gray */
+  --color-border: #1f1f1f; /* Charcoal */
+  --color-glow-effect: rgba(255, 0, 79, 0.4); /* Neon Glow Effect */
+  --gradient-crimson-neon: linear-gradient(90deg, #ff004f, #ff6a90);
 }
 
 body {

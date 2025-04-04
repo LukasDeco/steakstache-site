@@ -29,8 +29,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppWrapper>
-          <div className="bg-[#98d0be] w-full min-h-screen pb-20 font-[family-name:var(--font-geist-sans)] lg:px-12 lg:py-10 p-0">
-            <div className="bg-[radial-gradient(150%_100%_at_50%_60%,#FFDADE_0%,#18AB7C_40%,#090C08_70%)] lg:rounded-3xl sm:bg-[radial-gradient(100%_100%_at_50%_80%,#FFDADE_0%,#18AB7C_40%,#090C08_70%)] w-full min-h-screen font-[family-name:var(--font-geist-sans)]">
+          <div className="bg-[var(--color-text-primary)] w-full min-h-screen pb-20 font-[family-name:var(--font-geist-sans)] lg:px-12 lg:py-10 p-0">
+            <div className="bg-[radial-gradient(150%_100%_at_50%_60%,var(--color-primary-neon)_0%,var(--color-secondary-accent)_40%,var(--color-background)_70%)] lg:rounded-3xl sm:bg-[radial-gradient(100%_100%_at_50%_80%,var(--color-primary-neon)_0%,var(--color-secondary-accent)_40%,var(--color-background)_70%)] w-full min-h-screen font-[family-name:var(--font-geist-sans)]">
               <Nav />
               {children}
             </div>
