@@ -1,61 +1,7 @@
 // pages/api/validator-stake-blink.ts
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
-import {
-  ACTIONS_CORS_HEADERS,
-  ActionGetResponse,
-  ActionPostRequest,
-  ActionPostResponse,
-  CreateActionPostResponseArgs,
-  createPostResponse,
-} from "@solana/actions";
-
-type BlinkActionResponse = {
-  type: string;
-  icon: string;
-  title: string;
-  description: string;
-  extendedDescription?: string;
-  label: string;
-  disabled?: boolean;
-  links: {
-    actions: Array<{
-      type: string;
-      href: string;
-      label: string;
-      parameters: Array<any>;
-    }>;
-    dataTable?: string;
-  };
-  error?: {
-    message: string;
-  };
-  context?: {
-    url: string;
-    websiteUrl: string;
-    category: string;
-    provider: {
-      name: string;
-      icon: string;
-    };
-  };
-  preview?: {
-    image: string;
-    title: string;
-    description: string;
-    cta: string;
-    context: {
-      url: string;
-      websiteUrl: string;
-      category: string;
-      provider: {
-        name: string;
-        icon: string;
-      };
-    };
-  };
-  message?: string;
-};
+import { ActionGetResponse } from "@solana/actions";
 
 export async function GET(req: NextApiRequest) {
   // Only allow GET requests
