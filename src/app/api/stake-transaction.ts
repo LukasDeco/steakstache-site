@@ -27,7 +27,7 @@ type TransactionResponse = {
   };
 };
 
-export async function POST(
+export async function handler(
   req: NextApiRequest,
   res: NextApiResponse<TransactionResponse>
 ) {

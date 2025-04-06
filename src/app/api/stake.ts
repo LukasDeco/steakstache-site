@@ -3,7 +3,7 @@ import { NextApiRequest } from "next";
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
 import { ActionGetResponse } from "@solana/actions";
 
-export async function GET(req: NextApiRequest) {
+export async function handler(req: NextApiRequest) {
   // Only allow GET requests
   if (req.method !== "GET") {
     return new Response("Method not allowed", { status: 405 });
@@ -104,5 +104,3 @@ export async function GET(req: NextApiRequest) {
     );
   }
 }
-
-export const OPTIONS = GET; // OPTIONS request handler
