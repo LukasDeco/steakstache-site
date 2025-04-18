@@ -5,12 +5,10 @@ export default function Security() {
   return (
     <div className="flex flex-col gap-8 pt-4 row-start-2 text-neutral-900 justify-between items-center sm:items-start bg-[radial-gradient(100%_100%_at_50%_80%,var(--color-primary-neon)_0%,var(--color-secondary-accent)_40%,var(--color-background)_70%)] h-screen w-full min-h-screen px-8 pb-20 sm:px-20 font-[family-name:var(--font-geist-sans)]">
       <AppWrapper>
-        <Nav />
-
         <main className="mt-[100px] flex justify-center items-center w-full">
           <div className="mt-12 max-w-3xl">
             <section>
-              <h2 className="mb-4 text-3xl font-black">Security</h2>
+              <h2 className="mb-4 text-3xl font-black text-white">Security</h2>
               <h3 className="mb-4 text-xl font-extrabold">
                 Our Security Guidelines
               </h3>

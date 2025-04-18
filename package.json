@@ -9,16 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
     "@solana/actions": "^1.6.6",
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@tanstack/react-query": "^5.68.0",
+    "@types/react-modal": "^3.16.3",
     "bs58": "^6.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.488.0",
     "next": "15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2"
+    "react-modal": "^3.16.3",
+    "tailwind-merge": "^3.2.0",
+    "tw-animate-css": "^1.2.5",
+    "ui": "shadcn/ui"
   },
   "devDependencies": {
     "typescript": "^5",

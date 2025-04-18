@@ -1,15 +1,16 @@
 "use client";
 
-import { BaseWalletMultiButton } from "./WalletButton";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { StakeButton } from "./StakeButton";
 import StatsSection from "./StatsSection";
+import { BaseWalletMultiButton, Button } from "./WalletButton";
+import { useWallet } from "@solana/wallet-adapter-react";
+
 export const Hero = () => {
   const wallet = useWallet();
   const publicKey = wallet?.publicKey;
 
   return (
-    <main className="flex px-8 sm:px-20 pb-10 rounded-b-3xl flex-1 bg-[var(--color-background)] text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
+    <main className="flex px-8 sm:px-20 pb-20 rounded-b-3xl flex-1 bg-[var(--color-background)] text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
       <div className="flex flex-col gap-4 flex-1">
         <h2 className="sm:text-6xl text-4xl font-bold flex-1">
           <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
@@ -18,7 +19,20 @@ export const Hero = () => {
         </h2>
         <div>
           {publicKey ? (
-            <StakeButton />
+            <Button
+              onClick={() => {
+                const stakingSection =
+                  document.getElementById("staking-section");
+                if (stakingSection) {
+                  stakingSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className={
+                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-12 py-4 rounded-md transition-colors duration-300 ease-in-out"
+              }
+            >
+              Stake Now
+            </Button>
           ) : (
             <WalletMultiButton
               wrapperClassName="w-full sm:w-auto"
