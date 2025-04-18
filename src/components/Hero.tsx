@@ -1,6 +1,5 @@
 "use client";
 
-import { StakeButton } from "./StakeButton";
 import StatsSection from "./StatsSection";
 import { BaseWalletMultiButton, Button } from "./WalletButton";
 import { useWallet } from "@solana/wallet-adapter-react";
