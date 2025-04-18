@@ -6,17 +6,24 @@ type StatCardProps = {
   value: string;
   label: string;
   className?: string;
+  loading?: boolean;
 };
 
-function StatCard({ value, label, className }: StatCardProps) {
+function StatCard({ value, label, className, loading }: StatCardProps) {
   return (
     <div
-      className={`relative flex flex-col items-center justify-center bg-black sm:rounded-3xl p-6 min-w-64 w-full sm:w-auto shadow-lg ${className}`}
+      className={`relative flex flex-col items-center p-3 bg-[var(--transparent-background)] rounded-2xl justify-center w-full sm:w-auto shadow-lg ${className}`}
     >
-      <span className="text-6xl font-bold text-[var(--color-secondary-accent)]">
-        {value}
+      <span className="text-6xl font-bold text-[var(--color-primary-neon)]">
+        {loading ? (
+          <span className="animate-pulse">...</span>
+        ) : (
+          <span className="animate-(--fade-in-animation)">{value}</span>
+        )}
       </span>
-      <span className="text-sm text-gray-400 mt-2">{label}</span>
+      <span className="text-sm text-[var(--color-primary-neon)] mt-2 text-nowrap">
+        {label}
+      </span>
     </div>
   );
 }
@@ -24,25 +31,23 @@ function StatCard({ value, label, className }: StatCardProps) {
 export default function StatsSection() {
   const { data, isLoading } = useStakeWizData();
   return (
-    <div className="flex items-center sm:flex-row flex-col justify-center w-full mt-[100px]">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className="flex sm:flex-row flex-col items-end justify-center w-full gap-0.5 animate-(--fade-in-animation)">
-          <div className="bg-black rounded-r-3xl rounded-bl-3xl h-[150px] w-full sm:block hidden" />
+    <div className="flex items-center sm:flex-row flex-col justify-center w-full bg-[url('/assets/images/red-hills.png')] p-10 rounded-2xl bg-cover bg-center">
+      <div className="flex sm:flex-row flex-col items-center justify-center w-full gap-4">
+        {/* <div className="flex-1">
           <StatCard
-            value={data?.commission + "%"}
-            className="-mb-[24px]"
+            value={data?.commission?.toFixed(2) + "%"}
             label="Inflation Commission"
+            loading={isLoading}
           />
+        </div> */}
+        <div className="flex-1">
           <StatCard
             value={data?.total_apy + "%"}
-            className="sm:min-h-48"
             label="TrueAPY"
+            loading={isLoading}
           />
-          <div className="bg-black rounded-l-3xl rounded-br-3xl h-[150px] w-full sm:block hidden" />
         </div>
-      )}
+      </div>
     </div>
   );
 }
