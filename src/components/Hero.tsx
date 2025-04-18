@@ -9,12 +9,12 @@ export const Hero = () => {
   const publicKey = wallet?.publicKey;
 
   return (
-    <main className="flex px-8 sm:px-20 pb-20 rounded-b-3xl flex-1 bg-[var(--color-background)] text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
+    <main className="flex px-8 sm:px-20 pb-20 md:rounded-b-3xl md:pt-0 pt-8 flex-1 bg-[var(--color-background)] text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
       <div className="flex flex-col gap-4 flex-1">
-        <h2 className="sm:text-6xl text-4xl font-bold flex-1">
+        <h2 className="sm:text-6xl text-4xl font-bold flex-1 md:text-left text-center">
           <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
           <span className="text-[var(--color-primary-neon)] mr-1">{"}"}</span>
-          SteakStache is a high-quality Solana validator
+          Solana Staking You Can Trust
         </h2>
         <div>
           {publicKey ? (
@@ -27,7 +27,7 @@ export const Hero = () => {
                 }
               }}
               className={
-                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-12 py-4 rounded-md transition-colors duration-300 ease-in-out"
+                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-12 py-4 rounded-md transition-colors duration-300 ease-in-out w-full md:w-auto"
               }
             >
               Stake Now
@@ -35,12 +35,12 @@ export const Hero = () => {
           ) : (
             <WalletMultiButton
               wrapperClassName="w-full sm:w-auto"
-              className="w-full sm:w-auto bg-[var(--secondary-accent)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+              className="w-full sm:w-auto bg-[var(--color-primary-neon)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
             />
           )}
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 hidden md:block">
         <StatsSection />
         {/* <div className="mb-4 flex flex-col gap-4"> */}
         {/* <div>

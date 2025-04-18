@@ -36,7 +36,7 @@ const StakeSection = () => {
                 Native Staking
               </h3>
             </div>
-            <p className="text-neutral-300 mb-6">
+            <p className="text-neutral-300 mb-6 md:text-left text-center">
               Stake directly for maximum control of your stake
             </p>
             <div className="flex items-center flex-col gap-2 mb-6">
@@ -74,7 +74,7 @@ const StakeSection = () => {
                 LST Staking
               </h3>
             </div>
-            <p className="text-neutral-300 mb-6">
+            <p className="text-neutral-300 mb-6 md:text-left text-center">
               Maintain liquidity while earning rewards
             </p>
             <div className="flex items-center flex-col gap-2 mb-6">

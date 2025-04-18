@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
 import { AppWrapper } from "@/components/AppWrapper";
+import { Nav } from "@/components/Nav";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,8 +31,8 @@ export default function RootLayout({
       >
         <AppWrapper>
           <div className="bg-[var(--color-text-primary)] w-full min-h-screen pb-20 font-[family-name:var(--font-geist-sans)] lg:px-12 lg:pb-10 p-0">
-            <div className="lg:rounded-3xl sw-full min-h-screen font-[family-name:var(--font-geist-sans)] pt-10">
-              <div className="bg-[var(--color-background)] rounded-t-3xl">
+            <div className="lg:rounded-3xl sw-full min-h-screen font-[family-name:var(--font-geist-sans)] md:pt-10">
+              <div className="bg-[var(--color-background)] md:rounded-t-3xl">
                 <Nav />
               </div>
               {children}
