@@ -1,6 +1,6 @@
 "use client";
 
-import { WalletMultiButton } from "./Hero";
+import { WalletMultiButton } from "./WalletMultiButton";
 import Image from "next/image";
 import Link from "next/link";
 

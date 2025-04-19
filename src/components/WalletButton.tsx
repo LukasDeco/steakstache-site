@@ -1,7 +1,9 @@
 "use client";
 
+import type { WalletName } from "@solana/wallet-adapter-base";
+import { useWalletMultiButton } from "@solana/wallet-adapter-base-ui";
+import { useWalletModal, WalletIcon } from "@solana/wallet-adapter-react-ui";
 import { FC } from "react";
-
 import {
   CSSProperties,
   ReactElement,
@@ -10,11 +12,6 @@ import {
   useRef,
   useState,
 } from "react";
-
-import type { WalletName } from "@solana/wallet-adapter-base";
-import { useWalletMultiButton } from "@solana/wallet-adapter-base-ui";
-
-import { useWalletModal, WalletIcon } from "@solana/wallet-adapter-react-ui";
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -169,7 +166,7 @@ export function BaseWalletConnectionButton({
   return (
     <Button
       {...props}
-      className={twMerge("px-6 h-[48px]", props.className)}
+      className={twMerge("px-6", props.className)}
       startIcon={
         walletIcon && walletName ? (
           <WalletIcon

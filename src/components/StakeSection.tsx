@@ -2,16 +2,18 @@
 
 import { NativeStakeModal } from "./NativeStakeModal";
 import { Button } from "./WalletButton";
+import { WalletMultiButton } from "./WalletMultiButton";
 import { Skeleton } from "./ui/skeleton";
 import { useStacheSOLAPY } from "@/hooks/useStacheSOLAPY";
 import { useStakeWizData } from "@/hooks/useStakeWizData";
+import { useWallet } from "@solana/wallet-adapter-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const StakeSection = () => {
   const [nativeStakeModalOpen, setNativeStakeModalOpen] = useState(false);
-
+  const { publicKey } = useWallet();
   const { data, isLoading: stakewizLoading } = useStakeWizData();
   const { data: stacheSOLAPY, isLoading: stacheSOLAPYLoading } =
     useStacheSOLAPY();
@@ -49,15 +51,24 @@ const StakeSection = () => {
                 )}
               </div>
             </div>
-            <Button
-              onClick={() => setNativeStakeModalOpen(true)}
-              disabled={nativeStakeModalOpen}
-              className={
-                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
-              }
-            >
-              Stake
-            </Button>
+            {publicKey ? (
+              <Button
+                onClick={() => setNativeStakeModalOpen(true)}
+                disabled={nativeStakeModalOpen}
+                className={
+                  "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
+                }
+              >
+                Stake
+              </Button>
+            ) : (
+              <WalletMultiButton
+                wrapperClassName="w-full"
+                className="bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
+              >
+                Connect Wallet and Stake
+              </WalletMultiButton>
+            )}
           </div>
 
           <div className="flex flex-col justify-between items-center flex-1 bg-[var(--color-charcoal)] rounded-3xl p-6 border border-[var(--color-primary-neon)] hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
