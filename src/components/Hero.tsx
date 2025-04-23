@@ -10,12 +10,12 @@ export const Hero = () => {
   const publicKey = wallet?.publicKey;
 
   return (
-    <main className="flex px-8 sm:px-20 pb-20 md:rounded-b-3xl md:pt-0 pt-8 flex-1 bg-[var(--color-background)] text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
+    <main className="flex px-8 sm:px-20 pb-20 md:pt-0 pt-8 flex-1 bg-gradient-slate text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
       <div className="flex flex-col gap-4 flex-1">
         <h2 className="sm:text-6xl text-4xl font-bold flex-1 md:text-left text-center">
           <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
           <span className="text-[var(--color-primary-neon)] mr-1">{"}"}</span>
-          Solana Staking You Can Trust
+          Make Your Stake Sizzle
         </h2>
         <div>
           {publicKey ? (

@@ -32,6 +32,8 @@
   --color-charcoal: #1f1f1f; /* Charcoal */
   --color-glow-effect: rgba(255, 0, 79, 0.4); /* Neon Glow Effect */
   --gradient-crimson-neon: linear-gradient(90deg, #ff004f, #ff6a90);
+  --gradient-green-neon: linear-gradient(90deg, #00ff99, #00e187);
+  --gradient-slate: linear-gradient(90deg, #1f1f1f, #0a0a0a);
   --color-primary-green-neon: #00ff99;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -144,4 +146,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.bg-gradient-slate {
+  background: var(--gradient-slate);
 }

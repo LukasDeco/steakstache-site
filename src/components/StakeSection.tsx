@@ -21,10 +21,10 @@ const StakeSection = () => {
     <>
       <div className="flex flex-col gap-6 items-center justify-center">
         <h2 className="text-2xl font-bold text-[var(--color-charcoal)]">
-          Staking Strategies
+          Choose Your Strategy
         </h2>
         <div className="px-8 sm:px-20 w-full flex flex-col sm:flex-row gap-6">
-          <div className="flex flex-col justify-between items-center flex-1 bg-[var(--color-charcoal)] rounded-3xl p-6 border border-[var(--color-primary-neon)] hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
+          <div className="flex flex-col justify-between items-center flex-1 bg-gradient-slate rounded-3xl p-6 hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 relative">
                 <Image
@@ -39,7 +39,7 @@ const StakeSection = () => {
               </h3>
             </div>
             <p className="text-neutral-300 mb-6 md:text-left text-center">
-              Stake directly for maximum control of your stake
+              Stake directly to our validator for maximum control of your stake
             </p>
             <div className="flex items-center flex-col gap-2 mb-6">
               <div className="text-neutral-300">APY</div>
@@ -71,7 +71,7 @@ const StakeSection = () => {
             )}
           </div>
 
-          <div className="flex flex-col justify-between items-center flex-1 bg-[var(--color-charcoal)] rounded-3xl p-6 border border-[var(--color-primary-neon)] hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
+          <div className="flex flex-col justify-between items-center flex-1 bg-gradient-slate rounded-3xl p-6 hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 relative">
                 <Image
