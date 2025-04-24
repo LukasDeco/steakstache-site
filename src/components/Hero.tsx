@@ -15,8 +15,9 @@ export const Hero = () => {
         <h2 className="sm:text-6xl text-4xl font-bold flex-1 md:text-left text-center">
           <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
           <span className="text-[var(--color-primary-neon)] mr-1">{"}"}</span>
-          Make Your Stake Sizzle
+          Grow Your Stache
         </h2>
+        <h4 className="font-semibold text-xl">(razor not included)</h4>
         <div>
           {publicKey ? (
             <Button
@@ -28,7 +29,7 @@ export const Hero = () => {
                 }
               }}
               className={
-                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-12 py-4 rounded-md transition-colors duration-300 ease-in-out w-full md:w-auto"
+                "bg-grill-marks bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-12 py-4 rounded-md transition-colors duration-300 ease-in-out w-full md:w-auto"
               }
             >
               Stake Now
@@ -36,7 +37,7 @@ export const Hero = () => {
           ) : (
             <WalletMultiButton
               wrapperClassName="w-full sm:w-auto"
-              className="sm:w-auto bg-[var(--color-primary-neon)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-12 py-4 w-full rounded-md transition-colors duration-300 ease-in-out"
+              className="bg-grill-marks sm:w-auto bg-[var(--color-primary-neon)] hover:bg-[var(--color-secondary-accent)] cursor-pointer text-neutral-100 px-12 py-4 w-full rounded-md transition-colors duration-300 ease-in-out"
             >
               Connect Wallet and Stake
             </WalletMultiButton>

@@ -1,3 +1,7 @@
+import { Button } from "./WalletButton";
+import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
+import { useConnection } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
   Keypair,
   StakeProgram,
@@ -7,12 +11,9 @@ import {
   Lockup,
   Authorized,
 } from "@solana/web3.js";
-import { Button } from "./WalletButton";
-import { useConnection } from "@solana/wallet-adapter-react";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
+
 export const StakeButton = () => {
   const { publicKey, wallet, signTransaction } = useWallet();
   const { connection } = useConnection();
@@ -90,7 +91,7 @@ export const StakeButton = () => {
                 onChange={(e) => setStakeAmount(Number(e.target.value))}
               />
               <button
-                className="bg-[var(--color-secondary-accent)] cursor-pointer hover:bg-[var(--color-background)] text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+                className="bg-grill-marks bg-[var(--color-secondary-accent)] cursor-pointer hover:bg-[var(--color-background)] text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
                 onClick={handleStake}
               >
                 Stake
@@ -105,7 +106,7 @@ export const StakeButton = () => {
           onClick={() => setOpenedForm(true)}
           disabled={openedForm}
           className={twMerge(
-            "bg-[var(--color-primary-neon)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
+            "bg-grill-marks bg-[var(--color-primary-neon)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
             openedForm ? "" : "hover:bg-[var(--color-secondary-accent)]"
           )}
         >

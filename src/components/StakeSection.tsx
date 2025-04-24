@@ -21,7 +21,7 @@ const StakeSection = () => {
     <>
       <div className="flex flex-col gap-6 items-center justify-center">
         <h2 className="text-2xl font-bold text-[var(--color-charcoal)]">
-          Choose Your Strategy
+          Choose Your Strategy - Watch The Growth
         </h2>
         <div className="px-8 sm:px-20 w-full flex flex-col sm:flex-row gap-6">
           <div className="flex flex-col justify-between items-center flex-1 bg-gradient-slate rounded-3xl p-6 hover:border-[var(--color-secondary-accent)] transition-colors duration-300">
@@ -56,7 +56,7 @@ const StakeSection = () => {
                 onClick={() => setNativeStakeModalOpen(true)}
                 disabled={nativeStakeModalOpen}
                 className={
-                  "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
+                  "bg-grill-marks bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
                 }
               >
                 Stake
@@ -64,7 +64,7 @@ const StakeSection = () => {
             ) : (
               <WalletMultiButton
                 wrapperClassName="w-full"
-                className="bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
+                className="bg-grill-marks bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full"
               >
                 Connect Wallet and Stake
               </WalletMultiButton>
@@ -100,7 +100,7 @@ const StakeSection = () => {
             </div>
             <Link
               className={
-                "bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full text-center"
+                "bg-grill-marks bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 px-4 py-4 rounded-md transition-colors duration-300 ease-in-out w-full text-center"
               }
               target="_blank"
               href="https://app.sanctum.so/stacheSOL"
