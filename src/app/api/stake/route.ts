@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
           {
             // Defines this as a blockchain transaction
             type: "transaction",
-            label: "1SOL",
+            label: "1 SOL",
             // This is the endpoint for the POST request
             href: `${transactionUrl}?amount=1`,
           },
