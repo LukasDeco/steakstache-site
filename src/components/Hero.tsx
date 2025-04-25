@@ -11,14 +11,16 @@ export const Hero = () => {
 
   return (
     <main className="flex px-8 sm:px-20 pb-20 md:pt-0 pt-8 flex-1 bg-gradient-slate text-[var(--color-text-primary)] row-start-2 justify-center items-end sm:items-end w-full gap-10 flex-col sm:flex-row">
-      <div className="flex flex-col gap-4 flex-1">
+      <div className="flex flex-col gap-4 flex-1 justify-center md:items-start items-center">
         <h2 className="sm:text-6xl text-4xl font-bold flex-1 md:text-left text-center">
           <span className="hidden sm:block">&nbsp; &nbsp; &nbsp; &nbsp;</span>
           <span className="text-[var(--color-primary-neon)] mr-1">{"}"}</span>
-          Grow Your Stache
+          Grow a Bigger Stache
         </h2>
-        <h4 className="font-semibold text-xl">(razor not included)</h4>
-        <div>
+        <h4 className="font-semibold text-xl md:hidden block">
+          (razor not included)
+        </h4>
+        <div className="w-full">
           {publicKey ? (
             <Button
               onClick={() => {

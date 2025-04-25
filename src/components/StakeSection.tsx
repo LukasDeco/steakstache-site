@@ -21,7 +21,8 @@ const StakeSection = () => {
     <>
       <div className="flex flex-col gap-6 items-center justify-center">
         <h2 className="text-2xl font-bold text-[var(--color-charcoal)]">
-          Choose Your Strategy - Watch The Growth
+          <span className="text-[var(--color-primary-neon)] mr-1">{"}"}</span>
+          Choose Your Strategy
         </h2>
         <div className="px-8 sm:px-20 w-full flex flex-col sm:flex-row gap-6">
           <div className="flex flex-col justify-between items-center flex-1 bg-gradient-slate rounded-3xl p-6 hover:border-[var(--color-secondary-accent)] transition-colors duration-300">

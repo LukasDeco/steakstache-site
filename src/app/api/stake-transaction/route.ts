@@ -1,5 +1,9 @@
 // pages/api/stake-transaction.ts
-import { NextApiRequest, NextApiResponse } from "next";
+
+import {
+  CreateActionPostResponseArgs,
+  createPostResponse,
+} from "@solana/actions";
 import {
   Connection,
   PublicKey,
@@ -11,10 +15,7 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import {
-  CreateActionPostResponseArgs,
-  createPostResponse,
-} from "@solana/actions";
+import { NextApiRequest, NextApiResponse } from "next";
 
 // Your validator vote account
 const VALIDATOR_VOTE_ACCOUNT = new PublicKey("YOUR_VALIDATOR_VOTE_ACCOUNT");
@@ -27,7 +28,7 @@ type TransactionResponse = {
   };
 };
 
-export async function handler(
+export async function GET(
   req: NextApiRequest,
   res: NextApiResponse<TransactionResponse>
 ) {

@@ -191,7 +191,9 @@ export type ButtonProps = PropsWithChildren<{
 export const Button: FC<ButtonProps> = (props) => {
   return (
     <button
-      className={`flex items-center justify-center ${props.className || ""}`}
+      className={`bg-grill-marks flex items-center justify-center ${
+        props.className || ""
+      }`}
       disabled={props.disabled}
       style={props.style}
       onClick={props.onClick}
