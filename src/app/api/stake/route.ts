@@ -20,10 +20,10 @@ export async function GET(req: NextRequest) {
     // Create the blink data according to the specified format
     const blinkData: ActionGetResponse = {
       type: "action",
-      icon: `${baseUrl}/assets/images/logo.png`,
+      icon: `${baseUrl}/assets/images/steak-pilot.png`,
       title: "Grow your stache with SteakStache",
       description:
-        "Stake with a low-commission, high-performance validator that sports a killer stache",
+        "Stake your SOL with a low-commission, high-performance validator that sports a killer stache.",
       label: "Stake Now",
       disabled: false,
       links: {
