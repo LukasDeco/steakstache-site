@@ -10,13 +10,6 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Get staking amount from query params (in SOL)
-    const url = new URL(req.url);
-    const amountParam = url.searchParams.get("amount");
-    const publicKeyParam = url.searchParams.get("publicKey");
-    const stakeAmount =
-      typeof amountParam === "string" ? parseFloat(amountParam) : 1;
-
     // Base URL for your site
     const baseUrl =
       process.env.NEXT_PUBLIC_SITE_URL || "https://steakstache.com";
