@@ -47,8 +47,8 @@ export async function GET(req: NextRequest) {
           },
           {
             type: "transaction",
-            href: transactionUrl,
-            label: `Stake SOL`,
+            href: `${transactionUrl}?amount={amount}`,
+            label: `Stake Now`,
             parameters: [
               {
                 name: "amount",
