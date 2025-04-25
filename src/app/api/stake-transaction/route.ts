@@ -1,6 +1,7 @@
 // pages/api/stake-transaction.ts
 
 import {
+  ActionPostRequest,
   CreateActionPostResponseArgs,
   createPostResponse,
 } from "@solana/actions";
@@ -15,39 +16,23 @@ import {
   VersionedTransaction,
 } from "@solana/web3.js";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest } from "next/server";
 
 // Your validator vote account
-const VALIDATOR_VOTE_ACCOUNT = new PublicKey("YOUR_VALIDATOR_VOTE_ACCOUNT");
+const VALIDATOR_VOTE_ACCOUNT = new PublicKey(
+  process.env.NEXT_VOTE_ACCOUNT ?? ""
+);
 
-type TransactionResponse = {
-  transaction: string; // base64 encoded transaction
-  message?: string;
-  error?: {
-    message: string;
-  };
-};
-
-export async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse<TransactionResponse>
-) {
-  // Only allow GET requests
-  if (req.method !== "GET") {
-    return res.status(405).json({
-      transaction: "",
-      error: { message: "Method not allowed" },
-    });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const amountParam = req.query.amount;
-    const pubkeyParam = req.query.publicKey as string;
+    const amountParam = req.nextUrl.searchParams.get("amount");
+    // Payer public key is passed in the request body
+    const request: ActionPostRequest = await req.json();
+    const pubkeyParam = new PublicKey(request.account);
 
     if (!pubkeyParam) {
-      return res.status(400).json({
-        transaction: "",
-        error: { message: "Missing required parameter: publicKey" },
+      return new Response("Missing required parameter: publicKey", {
+        status: 400,
       });
     }
 
@@ -110,17 +95,13 @@ export async function GET(
       },
     };
 
-    return createPostResponse(payload);
+    return new Response(JSON.stringify(createPostResponse(payload)), {
+      status: 200,
+    });
   } catch (error) {
     console.error("Error creating stake transaction:", error);
-    return res.status(500).json({
-      transaction: "",
-      error: {
-        message:
-          error instanceof Error
-            ? error.message
-            : "Failed to create staking transaction",
-      },
+    return new Response("Failed to create staking transaction", {
+      status: 500,
     });
   }
 }

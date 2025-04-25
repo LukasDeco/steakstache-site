@@ -2,25 +2,18 @@
 
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
 import { ActionGetResponse } from "@solana/actions";
-import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 
-export async function GET(req: NextApiRequest) {
-  // Only allow GET requests
-  if (req.method !== "GET") {
-    return new Response("Method not allowed", { status: 405 });
-  }
-
+export async function GET(req: NextRequest) {
   if (!req.url) {
     return new Response("No URL provided", { status: 400 });
   }
 
   try {
-    // Your validator public key
-    // const validatorVoteKey = VALIDATOR_VOTE_ACCOUNT;
-
     // Get staking amount from query params (in SOL)
     const url = new URL(req.url);
     const amountParam = url.searchParams.get("amount");
+    const publicKeyParam = url.searchParams.get("publicKey");
     const stakeAmount =
       typeof amountParam === "string" ? parseFloat(amountParam) : 1;
 
@@ -29,7 +22,7 @@ export async function GET(req: NextApiRequest) {
       process.env.NEXT_PUBLIC_SITE_URL || "https://steakstache.com";
 
     // Create transaction URL - this would be the URL that actually executes the stake transaction
-    const transactionUrl = `${baseUrl}/api/stake-transaction?amount=${stakeAmount}`;
+    const transactionUrl = `${baseUrl}/api/stake-transaction?amount=${stakeAmount}&publicKey=${publicKeyParam}`;
 
     // Create the blink data according to the specified format
     const blinkData: ActionGetResponse = {
@@ -51,30 +44,6 @@ export async function GET(req: NextApiRequest) {
           },
         ],
       },
-      // context: {
-      //   url: `${baseUrl}/validator`,
-      //   websiteUrl: baseUrl,
-      //   category: "Staking",
-      //   provider: {
-      //     name: "Your Validator Name",
-      //     icon: `${baseUrl}/validator-icon.png`,
-      //   },
-      // },
-      // preview: {
-      //   image: `${baseUrl}/validator-preview.jpg`,
-      //   title: "Stake with My Validator",
-      //   description: `Stake ${stakeAmount} SOL and earn rewards`,
-      //   cta: "Stake Now",
-      //   context: {
-      //   url: `${baseUrl}/validator`,
-      //   websiteUrl: baseUrl,
-      //   category: "Staking",
-      //   provider: {
-      //     name: "Your Validator Name",
-      //     icon: `${baseUrl}/validator-icon.png`,
-      //   },
-      //   },
-      // },
     };
 
     // Return the blink data
