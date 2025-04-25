@@ -95,7 +95,11 @@ export async function POST(req: NextRequest) {
       },
     };
 
-    return new Response(JSON.stringify(createPostResponse(payload)), {
+    console.log("payload", payload);
+
+    const response = await createPostResponse(payload);
+
+    return new Response(JSON.stringify(response), {
       status: 200,
     });
   } catch (error) {

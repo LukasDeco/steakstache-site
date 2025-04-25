@@ -22,25 +22,47 @@ export async function GET(req: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL || "https://steakstache.com";
 
     // Create transaction URL - this would be the URL that actually executes the stake transaction
-    const transactionUrl = `${baseUrl}/api/stake-transaction?amount=${stakeAmount}&publicKey=${publicKeyParam}`;
+    const transactionUrl = `${baseUrl}/api/stake-transaction`;
 
     // Create the blink data according to the specified format
     const blinkData: ActionGetResponse = {
       type: "action",
       icon: `${baseUrl}/assets/images/logo.png`,
-      title: "Stake to My Validator",
-      description: "Support my Solana validator and earn rewards",
-      // extendedDescription:
-      //   "By staking your SOL with my validator, you'll earn rewards while helping secure the Solana network.",
+      title: "Grow your stache with SteakStache",
+      description:
+        "Stake with a low-commission, high-performance validator that sports a killer stache",
       label: "Stake Now",
       disabled: false,
       links: {
         actions: [
           {
+            // Defines this as a blockchain transaction
+            type: "transaction",
+            label: "1SOL",
+            // This is the endpoint for the POST request
+            href: `${transactionUrl}?amount=1`,
+          },
+          {
+            type: "transaction",
+            label: "5 SOL",
+            href: `${transactionUrl}?amount=5`,
+          },
+          {
+            type: "transaction",
+            label: "10 SOL",
+            href: `${transactionUrl}?amount=10`,
+          },
+          {
             type: "transaction",
             href: transactionUrl,
-            label: `Stake ${stakeAmount} SOL`,
-            parameters: [],
+            label: `Stake SOL`,
+            parameters: [
+              {
+                name: "amount",
+                label: "Enter a custom SOL amount",
+                type: "number",
+              },
+            ],
           },
         ],
       },
