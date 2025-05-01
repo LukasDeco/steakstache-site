@@ -1,12 +1,17 @@
 // pages/api/validator-stake-blink.ts
 
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
-import { ActionGetResponse } from "@solana/actions";
+import { ActionGetResponse, ACTIONS_CORS_HEADERS } from "@solana/actions";
 import { NextRequest } from "next/server";
+
+const headers = {
+  "Content-Type": "application/json",
+  ...ACTIONS_CORS_HEADERS,
+};
 
 export async function GET(req: NextRequest) {
   if (!req.url) {
-    return new Response("No URL provided", { status: 400 });
+    return new Response("No URL provided", { status: 400, headers });
   }
 
   try {
@@ -62,7 +67,7 @@ export async function GET(req: NextRequest) {
     };
 
     // Return the blink data
-    return new Response(JSON.stringify(blinkData), { status: 200 });
+    return new Response(JSON.stringify(blinkData), { status: 200, headers });
   } catch (error) {
     console.error("Error generating staking blink:", error);
 
@@ -85,7 +90,10 @@ export async function GET(req: NextRequest) {
               : "Failed to generate staking blink",
         },
       }),
-      { status: 500 }
+      {
+        status: 500,
+        headers,
+      }
     );
   }
 }

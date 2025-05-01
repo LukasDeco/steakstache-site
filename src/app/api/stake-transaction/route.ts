@@ -2,8 +2,10 @@
 
 import {
   ActionPostRequest,
+  ACTIONS_CORS_HEADERS,
   CreateActionPostResponseArgs,
   createPostResponse,
+  BLOCKCHAIN_IDS,
 } from "@solana/actions";
 import {
   Connection,
@@ -23,6 +25,11 @@ const VALIDATOR_VOTE_ACCOUNT = new PublicKey(
   process.env.NEXT_VOTE_ACCOUNT ?? ""
 );
 
+const headers = {
+  "Content-Type": "application/json",
+  ...ACTIONS_CORS_HEADERS,
+};
+
 export async function POST(req: NextRequest) {
   try {
     const amountParam = req.nextUrl.searchParams.get("amount");
@@ -33,6 +40,7 @@ export async function POST(req: NextRequest) {
     if (!pubkeyParam) {
       return new Response("Missing required parameter: publicKey", {
         status: 400,
+        headers,
       });
     }
 
@@ -101,11 +109,13 @@ export async function POST(req: NextRequest) {
 
     return new Response(JSON.stringify(response), {
       status: 200,
+      headers,
     });
   } catch (error) {
     console.error("Error creating stake transaction:", error);
     return new Response("Failed to create staking transaction", {
       status: 500,
+      headers,
     });
   }
 }
