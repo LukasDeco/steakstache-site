@@ -5,7 +5,6 @@ import {
   ACTIONS_CORS_HEADERS,
   CreateActionPostResponseArgs,
   createPostResponse,
-  BLOCKCHAIN_IDS,
 } from "@solana/actions";
 import {
   Connection,
