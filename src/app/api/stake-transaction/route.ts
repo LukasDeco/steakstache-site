@@ -3,6 +3,7 @@
 import {
   ActionPostRequest,
   ACTIONS_CORS_HEADERS,
+  BLOCKCHAIN_IDS,
   CreateActionPostResponseArgs,
   createPostResponse,
 } from "@solana/actions";
@@ -19,6 +20,8 @@ import {
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { NextRequest } from "next/server";
 
+const blockchain = BLOCKCHAIN_IDS.mainnet;
+
 // Your validator vote account
 const VALIDATOR_VOTE_ACCOUNT = new PublicKey(
   process.env.NEXT_VOTE_ACCOUNT ?? ""
@@ -27,6 +30,8 @@ const VALIDATOR_VOTE_ACCOUNT = new PublicKey(
 const headers = {
   "Content-Type": "application/json",
   ...ACTIONS_CORS_HEADERS,
+  "x-blockchain-ids": blockchain,
+  "x-action-version": "2.4",
 };
 
 export async function POST(req: NextRequest) {

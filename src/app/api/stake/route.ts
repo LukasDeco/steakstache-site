@@ -1,12 +1,20 @@
 // pages/api/validator-stake-blink.ts
 
 // import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
-import { ActionGetResponse, ACTIONS_CORS_HEADERS } from "@solana/actions";
+import {
+  ActionGetResponse,
+  ACTIONS_CORS_HEADERS,
+  BLOCKCHAIN_IDS,
+} from "@solana/actions";
 import { NextRequest } from "next/server";
+
+const blockchain = BLOCKCHAIN_IDS.mainnet;
 
 const headers = {
   "Content-Type": "application/json",
   ...ACTIONS_CORS_HEADERS,
+  "x-blockchain-ids": blockchain,
+  "x-action-version": "2.4",
 };
 
 export async function GET(req: NextRequest) {
