@@ -7,7 +7,7 @@ const LABELS = {
   copied: "Copied",
   disconnect: "Disconnect",
   "has-wallet": "Connect",
-  "no-wallet": "Select Wallet",
+  "no-wallet": "Connect Wallet",
 } as const;
 
 type ButtonProps = {

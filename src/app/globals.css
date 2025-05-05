@@ -161,3 +161,55 @@
     transparent 8px
   );
 }
+
+.markdown-display {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+
+  h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+
+  h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+
+  h4 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+
+  h5 {
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+
+  h6 {
+    font-size: 0.875em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    color: var(--color-neutral-100);
+  }
+}
