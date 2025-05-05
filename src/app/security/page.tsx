@@ -1,5 +1,3 @@
-import { AppWrapper } from "@/components/AppWrapper";
-
 export default function Security() {
   return (
     <div className="flex flex-col gap-8 pt-4 row-start-2 text-neutral-900 justify-between items-center sm:items-start h-screen w-full min-h-screen px-8 pb-20 sm:px-20 font-[family-name:var(--font-geist-sans)]">
