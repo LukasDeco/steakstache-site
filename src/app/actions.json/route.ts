@@ -8,6 +8,10 @@ export const GET = async () => {
         pathPattern: "/*",
         apiPath: "/api/*",
       },
+      {
+        pathPattern: "https://www.steakstache.com/*",
+        apiPath: "https://www.steakstache.com/api/*",
+      },
       // idempotent rule as the fallback
       {
         pathPattern: "/api/**",
