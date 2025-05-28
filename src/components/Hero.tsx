@@ -1,6 +1,6 @@
 "use client";
 
-import StatsSection from "./StatsSection";
+import HeroStats from "./HeroStats";
 import { Button } from "./WalletButton";
 import { WalletMultiButton } from "./WalletMultiButton";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -47,14 +47,7 @@ export const Hero = () => {
         </div>
       </div>
       <div className="flex-1 hidden md:block">
-        <StatsSection />
-        {/* <div className="mb-4 flex flex-col gap-4"> */}
-        {/* <div>
-            SteakStache is a super low-commission, low-latency validator that
-            will unlock a higher APY for your SOL. Connect your wallet and start
-            staking today to earn a higher APY
-          </div> */}
-        {/* </div> */}
+        <HeroStats />
       </div>
     </main>
   );

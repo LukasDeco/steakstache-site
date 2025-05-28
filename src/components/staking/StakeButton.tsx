@@ -1,8 +1,7 @@
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../WalletButton";
 import { VALIDATOR_VOTE_ACCOUNT } from "@/constants";
-import { useTokenBalance } from "@/hooks/useTokenBalance";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useConnection } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
   Keypair,
   StakeProgram,
@@ -11,54 +10,15 @@ import {
   LAMPORTS_PER_SOL,
   Lockup,
   Authorized,
-  PublicKey,
 } from "@solana/web3.js";
-import Image from "next/image";
 import { useState } from "react";
-import Modal from "react-modal";
+import { twMerge } from "tailwind-merge";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    backgroundColor: "var(--color-charcoal)",
-    border: "none",
-    borderRadius: "12px",
-  },
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-};
-
-export const NativeStakeModal = ({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) => {
+export const StakeButton = () => {
   const { publicKey, wallet, signTransaction } = useWallet();
   const { connection } = useConnection();
+  const [openedForm, setOpenedForm] = useState(false);
   const [stakeAmount, setStakeAmount] = useState(0);
-  const { data: balance } = useTokenBalance({
-    tokenMint: new PublicKey("So11111111111111111111111111111111111111112"),
-  });
-
-  const handleChangeStakeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value === "" || !isNaN(Number(value))) {
-      if (Number(value) > Number(balance)) {
-        setStakeAmount(Number(balance));
-      } else {
-        setStakeAmount(Number(value));
-      }
-    }
-  };
-
   const handleStake = async () => {
     console.log("stakeAmount", stakeAmount);
     try {
@@ -113,36 +73,46 @@ export const NativeStakeModal = ({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      contentLabel="Native Staking"
-      style={customStyles}
-    >
-      <div className="flex flex-col gap-4 text-[var(--color-text-primary)] px-4 py-6">
-        <h3 className="text-2xl font-bold mb-4">Native Stake</h3>
-        <div className="flex items-center gap-2">
-          <Image
-            src="/assets/images/sol.svg"
-            alt="Solana Logo"
-            width={24}
-            height={24}
-          />
-          <span>{balance} SOL</span>
-        </div>
-        <Input
-          type="number"
-          className="bg-transparent border-none outline-none p-4 h-12"
-          value={stakeAmount}
-          onChange={handleChangeStakeAmount}
-        />
-        <Button
-          className="bg-[var(--color-primary-neon)] cursor-pointer text-neutral-100 p-4 h-12 rounded-md transition-colors duration-300 ease-in-out"
-          onClick={handleStake}
+    <>
+      {openedForm ? (
+        <div
+          className={twMerge(
+            "bg-[var(--color-primary-neon)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out flex items-center w-full sm:w-auto",
+            openedForm ? "" : "hover:bg-[var(--color-secondary-accent)]"
+          )}
         >
-          Stake
+          {openedForm ? (
+            <div className="flex gap-2 items-center">
+              <div>Enter Stake:</div>
+              <input
+                type="number"
+                className="bg-transparent border-none outline-none"
+                value={stakeAmount}
+                onChange={(e) => setStakeAmount(Number(e.target.value))}
+              />
+              <button
+                className="bg-grill-marks bg-[var(--color-secondary-accent)] cursor-pointer hover:bg-[var(--color-background)] text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out"
+                onClick={handleStake}
+              >
+                Stake
+              </button>
+            </div>
+          ) : (
+            "Stake for Higher APY"
+          )}
+        </div>
+      ) : (
+        <Button
+          onClick={() => setOpenedForm(true)}
+          disabled={openedForm}
+          className={twMerge(
+            "bg-grill-marks bg-[var(--color-primary-neon)] h-[64px] cursor-pointer text-neutral-100 px-4 py-2 rounded-md transition-colors duration-300 ease-in-out w-full sm:w-auto",
+            openedForm ? "" : "hover:bg-[var(--color-secondary-accent)]"
+          )}
+        >
+          Stake for Higher APY
         </Button>
-      </div>
-    </Modal>
+      )}
+    </>
   );
 };

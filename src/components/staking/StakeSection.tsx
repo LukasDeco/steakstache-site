@@ -1,9 +1,9 @@
 "use client";
 
+import { Button } from "../WalletButton";
+import { WalletMultiButton } from "../WalletMultiButton";
+import { Skeleton } from "../ui/skeleton";
 import { NativeStakeModal } from "./NativeStakeModal";
-import { Button } from "./WalletButton";
-import { WalletMultiButton } from "./WalletMultiButton";
-import { Skeleton } from "./ui/skeleton";
 import { useStacheSOLAPY } from "@/hooks/useStacheSOLAPY";
 import { useStakeWizData } from "@/hooks/useStakeWizData";
 import { useWallet } from "@solana/wallet-adapter-react";

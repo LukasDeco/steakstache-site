@@ -1,5 +1,5 @@
 import { Hero } from "@/components/Hero";
-import StakeSection from "@/components/StakeSection";
+import StakeSection from "@/components/staking/StakeSection";
 
 export default function Home() {
   return (
